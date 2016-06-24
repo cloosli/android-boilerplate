@@ -117,6 +117,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .replace(R.id.fragment, new MainFragment())
                         .commit();
                 break;
+            case R.id.menu_nav_two:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment, new TileContentFragment())
+                        .commit();
+                break;
+            case R.id.menu_nav_three:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment, new CardContentFragment())
+                        .commit();
+                break;
 
             default:
                 break;
