@@ -17,10 +17,12 @@
 package com.loosli.christian.android.boilerplate;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -110,6 +112,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setFragment(int itemId) {
         findViewById(R.id.tabs).setVisibility(View.GONE);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+            params.setScrollFlags(
+                    AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL |
+                    AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
+        }
 
         switch (itemId) {
             case R.id.menu_nav_one:
@@ -123,8 +132,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.menu_nav_three:
+                Fragment cardFragment = CardContentFragment.newInstance(0);
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment, new CardContentFragment())
+                        .replace(R.id.fragment, cardFragment)
                         .commit();
                 break;
 
